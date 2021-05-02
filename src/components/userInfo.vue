@@ -87,8 +87,44 @@ export default {
     };
   },
   methods: {
-    onSave() {},
-    init() {}
+    saveWeight(recordForm, index) {
+      // ** 將保存好的值帶入 weightRecord **
+      this.$refs.WeightRecord.onSave(recordForm, index);
+      setTimeout(() => {
+        this.$refs.WeightChart.onUpdate();
+      }, 500);
+
+      // ** 強制更新渲染圖表 **
+      // this.$forceUpdate();
+      // this.$refs.WeightChart.getOptions();
+    },
+
+    openDialog(theIndex, theDate) {
+      // ** 開啟跳窗 **
+      this.$refs.WeightDialog.open(theIndex, theDate);
+    },
+
+    onSave() {
+      // ** 保存個人資料 **
+      // 判斷個人資料三欄都未填寫時不能保存
+      const { name, gender, tall } = this.form;
+      if (!(name || gender || tall)) return;
+
+      // 將資料存入本地端
+      localStorage.setItem("user", JSON.stringify(this.form));
+
+      // 不可填寫
+      this.disabled = true;
+
+      // ** 更新 localstorage 的 bmi 值 及msg 和 type **
+      // TODO: 待寫
+    },
+
+    init() {
+      // ** 重設個人資料 **
+      (this.form.name = ""), (this.form.gender = ""), (this.form.tall = 0);
+      localStorage.removeItem("user");
+    }
   }
 };
 </script>

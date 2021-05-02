@@ -5,7 +5,8 @@ Vue.use(Vuex) // 告訴 Vue 使用 vuex
 
 // 定義一個新的 Vue Store
 /* eslint-disable */ 
-const store = new Vuex.Store({
+export default new Vuex.Store({
+  strict: true,
   state: {
   },
   mutations: {
@@ -15,4 +16,3 @@ const store = new Vuex.Store({
   getters: {
   }
 })
-export default store

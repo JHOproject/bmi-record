@@ -2,7 +2,7 @@
   <el-container id="app">
     <el-header id="navbar" style="height: 100px;">
       <router-link to="/" class="link">個人資訊</router-link>
-      <router-link to="/history" class="link">BMI 紀錄</router-link>
+      <router-link to="/history" class="link">歷史紀錄</router-link>
     </el-header>
     <el-main id="main">
       <router-view></router-view>
